@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>笔仙 Pixian · 自动小说创作机器</title>
+  <meta name="description" content="笔仙 Pixian：世界观、势力、人物、地图、大纲、章节一致性，一体化长篇小说创作驾驶舱。" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="aurora"></div>
+  <div class="ink-noise"></div>
+  <div class="sigil-field" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#hero" aria-label="Pixian Home">
+      <span class="brand-mark">筆</span>
+      <span><strong>笔仙</strong><small>Pixian</small></span>
+    </a>
+    <nav>
+      <a href="#studio">创作台</a>
+      <a href="#world">世界观</a>
+      <a href="#factions">势力星图</a>
+      <a href="#chapters">章节</a>
+      <a href="#opensource">开源</a>
+    </nav>
+    <button class="ghost-btn" id="themeToggle">月相切换</button>
+  </header>
+
+  <main>
+    <section id="hero" class="hero section">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">Open-source Novel Creation Engine</p>
+        <h1>请笔落纸，<br><span>万象成书。</span></h1>
+        <p class="hero-text">从世界观、战力体系、百家势力、人物谱系、地图到章节生成，笔仙把长篇故事拆成可设计、可校验、可持续生长的创作系统。</p>
+        <div class="hero-actions">
+          <a href="#studio" class="primary-btn magnetic">开始请笔</a>
+          <a href="#opensource" class="secondary-btn">查看开源结构</a>
+        </div>
+        <div class="stat-row">
+          <div><strong>3500</strong><span>每章目标字数</span></div>
+          <div><strong>120+</strong><span>势力样例</span></div>
+          <div><strong>12</strong><span>战力阶梯</span></div>
+        </div>
+      </div>
+      <div class="hero-orbit reveal delay-1">
+        <div class="ink-disc">
+          <span class="rune r1">命</span><span class="rune r2">书</span><span class="rune r3">灵</span><span class="rune r4">劫</span>
+          <div class="disc-core">Pixian</div>
+        </div>
+        <div class="floating-panel panel-a">txt / epub<br><b>风格采样</b></div>
+        <div class="floating-panel panel-b">剧情一致性<br><b>自动巡检</b></div>
+        <div class="floating-panel panel-c">势力 · 人物 · 地图<br><b>持续更新</b></div>
+      </div>
+    </section>
+
+    <section class="capabilities section reveal">
+      <article><span>01</span><h3>大纲命盘</h3><p>主线、支线、伏笔、反转全部进入可视化节点，不再靠临时记忆硬撑长篇。</p></article>
+      <article><span>02</span><h3>世界工坊</h3><p>境界、法则、建筑、地理、秘境可以随剧情同步增长。</p></article>
+      <article><span>03</span><h3>势力星图</h3><p>数百势力用星图呈现，阵营、敌友、控制区一眼可查。</p></article>
+      <article><span>04</span><h3>人物谱系</h3><p>身份、境界、秘密、动机、首次登场章节统一管理。</p></article>
+      <article><span>05</span><h3>风格模仿</h3><p>接收 txt/epub，抽取叙述节奏与常用语气，作为创作样本。</p></article>
+      <article><span>06</span><h3>章节巡检</h3><p>检查战力崩坏、时间线冲突、伏笔断裂和人物行为异常。</p></article>
+    </section>
+
+    <section id="studio" class="studio section reveal">
+      <div class="section-title">
+        <p class="eyebrow">Creation Cockpit</p>
+        <h2>创作驾驶舱</h2>
+        <p>不是普通表单后台，而是一张可以被召唤、修改和校验的故事命盘。</p>
+      </div>
+      <div class="cockpit">
+        <aside class="side-rail">
+          <button class="rail-item active" data-panel="destiny">命盘</button>
+          <button class="rail-item" data-panel="world">世界</button>
+          <button class="rail-item" data-panel="factions">势力</button>
+          <button class="rail-item" data-panel="characters">人物</button>
+          <button class="rail-item" data-panel="chapters">章节</button>
+          <button class="rail-item" data-panel="audit">巡检</button>
+        </aside>
+        <section class="canvas-card">
+          <div class="prompt-strip">
+            <input id="storyGoal" value="写一部东方玄幻长篇，主角从末法时代重启仙路" />
+            <button id="summonBtn" class="primary-btn small">召唤一章</button>
+          </div>
+          <div class="upload-zone" id="uploadZone">
+            <input type="file" id="fileInput" accept=".txt,.epub" />
+            <strong>拖入 txt / epub</strong><span id="uploadText">风格尚未采样</span>
+          </div>
+          <div class="destiny-map" id="destinyMap"></div>
+        </section>
+        <aside class="memory-panel">
+          <div class="panel-head"><span></span><strong>一致性巡检</strong></div>
+          <ul id="auditList"></ul>
+          <div class="direction-box">
+            <label>从任一章节修正方向</label>
+            <textarea id="directionInput">从第 17 章开始，让主角加入敌对宗门卧底。</textarea>
+            <button class="secondary-btn" id="applyDirection">写入命盘</button>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="world" class="world section reveal">
+      <div class="section-title"><p class="eyebrow">World Forge</p><h2>世界观工坊</h2></div>
+      <div class="world-grid">
+        <div class="law-card"><h3>太玄界核心法则</h3><p>凡被写入天书者，命运会沿文字生长；凡被删去名字者，将从众生记忆中消失。</p></div>
+        <div class="realm-spiral" id="realmSpiral"></div>
+        <div class="map-card" id="asciiMap"></div>
+      </div>
+    </section>
+
+    <section id="factions" class="factions section reveal">
+      <div class="section-title"><p class="eyebrow">Faction Galaxy</p><h2>势力星图</h2></div>
+      <div class="galaxy" id="galaxy"></div>
+    </section>
+
+    <section id="chapters" class="chapters section reveal">
+      <div class="section-title"><p class="eyebrow">Chapter Loom</p><h2>大纲与章节</h2></div>
+      <div class="chapter-workspace">
+        <div class="chapter-list" id="chapterList"></div>
+        <article class="manuscript"><h3 id="chapterTitle">第1章 · 天书残页现世</h3><p id="chapterBody"></p></article>
+        <div class="check-wall" id="checkWall"></div>
+      </div>
+    </section>
+
+    <section id="opensource" class="opensource section reveal">
+      <div class="section-title"><p class="eyebrow">Open Source</p><h2>开源工程结构</h2></div>
+      <div class="code-card">
+        <div class="terminal-dot"></div><div class="terminal-dot"></div><div class="terminal-dot"></div>
+        <pre><code>git clone github.com/XXYoLoong/Pixian.git
+cd Pixian
+python main.py --chapters 8 --chars 3500 --factions 120 --out output
+python main.py --input demo.txt --direction "17:主角卧底敌宗"</code></pre>
+      </div>
+      <div class="roadmap">
+        <div><b>Core</b><span>小说生成引擎</span></div>
+        <div><b>Studio</b><span>可视化创作台</span></div>
+        <div><b>Memory</b><span>长篇一致性记忆</span></div>
+        <div><b>Map</b><span>世界地图生成</span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>Pixian · 笔仙 · 让故事自己生长</footer>
+  <div class="toast" id="toast">灵感汇聚中…</div>
+  <script src="./app.js"></script>
+</body>
+</html>
